@@ -1,20 +1,16 @@
 {
-    "name": "backup_v2_ts",
-    "version": "0.0.2",
-    "main": "daily_backup.js",
-    "scripts": {
-        "run": "node --harmony --no-deprecation daily_backup.js",
-        "tsc": "tsc -p .",
-        "compile": "tsc -watch -p ./",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "dependencies": {},
-    "devDependencies": {
-        "@types/node": "8.0.17",
-        "@types/fs-extra": "4.0.0",
-        "@types/underscore": "1.8.1",
-        "typescript": "2.4.2",
-        "fs-extra": "4.0.0",
-        "underscore": "1.8.3"
-    }
+  "name": "meal-app",
+  "version": "0.0.0",
+  "main": "unpack_cli.ts",
+  "scripts": {
+    "build": "echo IGNORED"
+  },
+  "dependencies": {
+    "fs-extra": "7.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "*",
+    "typescript": "3.0.1",
+    "ts-node": "7.0.0"
+  }
 }

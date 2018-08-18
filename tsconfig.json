@@ -1,12 +1,41 @@
+/*
+  NOTE: currently everything is es6/es2017 to ease debugging. Ideally, you want to ship es5, but it needs to be tested.
+        or es6 + service worker detection.
+  AGREEMENT: This config is for debugging only. For the server, implement and deploy unglified/minified real one.
+  IDEA: deployment compiles FE, BE, SQL, runs e2e & deploys into versioned directory. Version is switched on the server transactionally (shutdown servers, upgrade DB, up servers, use PM2/MariaDB).
+
+  Full list of options: https: //www.typescriptlang.org/docs/handbook/compiler-options.html
+*/
 {
     "compileOnSave": true,
     "compilerOptions": {
+        // Required by Vue, see https://vuejs.org/v2/guide/typescript.html
+        // "allowSyntheticDefaultImports": true,
+        // Libs are from https://github.com/Microsoft/TypeScript/tree/master/src/lib
+        "lib": [
+            "dom",
+            "es5",
+            "es2015", // includes Promise Proxy Reflect Generator Collection
+            // Was about to add these to support for-of against iterables and triviallity of debugging.
+            "es6",
+            "es2017",
+            "es2017.object" // necessary for Array.entries() enumeration.
+        ],
+        // Choices for web from https://herringtondarkholme.github.io/2016/10/03/vue2-ts2/
+        // transition to .mjs (new modules): https://stackoverflow.com/questions/39436322/node-js-syntaxerror-unexpected-token-import
+        // from https://vuejs.org/v2/guide/typescript.html#Important-2-2-0-Change-Notice-for-TS-webpack-2-users
         "module": "commonjs",
+        // Webpack2-typescript: https://vuejs.org/v2/guide/typescript.html#Important-2-2-0-Change-Notice-for-TS-webpack-2-users
+        // Dexie: http://dexie.org/docs/Tutorial/Consuming-dexie-as-a-module#typescript
+        "moduleResolution": "node",
+        // "es6" is required for iterators, for-of against .entries()
         "target": "es2017",
+        "experimentalDecorators": true, // AGREEMENT: Remove me once implemented to check if needed.
         "noImplicitAny": true,
-        "removeComments": true,
+        "removeComments": false,
         "preserveConstEnums": true,
         "sourceMap": true,
+        "inlineSources": true,
         "alwaysStrict": true,
         "forceConsistentCasingInFileNames": true,
         "noFallthroughCasesInSwitch": true,
@@ -14,17 +43,19 @@
         "noImplicitThis": true,
         "noUnusedLocals": true,
         "strictNullChecks": true,
-        "watch": true,
-        "lib": [
-            "es2017",
-            "dom"
-        ],
-        "outDir": "out"
+        // AGREEMENT: Enable once `variable_name!` syntax is supported in VSCode.
+        // https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/
+        "strictPropertyInitialization": false,
+        // This would resolve that index fight you had with IGenericRow {[key: string]: any} and GenericRow.
+        // "suppressImplicitAnyIndexErrors": true,
+        "watch": false,
+        "outDir": "./out"
     },
     "include": [
-        "*.ts"
+        "**/*.ts"
     ],
     "exclude": [
+        // Here's why it still picks those up: https://github.com/Microsoft/TypeScript/wiki/FAQ#why-is-a-file-in-the-exclude-list-still-picked-up-by-the-compiler
         "node_modules"
     ]
 }
