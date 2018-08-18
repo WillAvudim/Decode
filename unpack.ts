@@ -74,7 +74,6 @@ export function StringKeyToBuffer(key: string): Buffer {
 
 export async function Unpack(source: string, destination: string): Promise<void> {
   await fse.ensureDir(destination)
-  debugger  // DO: switch to spawn
   await SpawnProcess(`tar`, [`zxvf`, `"${source}"`, `-C`, `"${destination}"`])
 }
 

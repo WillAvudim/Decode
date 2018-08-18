@@ -1,6 +1,6 @@
 {
-  "name": "meal-app",
-  "version": "0.0.0",
+  "name": "decode",
+  "version": "3.0.0",
   "main": "unpack_cli.ts",
   "scripts": {
     "build": "echo IGNORED"
