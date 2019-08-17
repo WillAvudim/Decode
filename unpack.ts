@@ -46,7 +46,6 @@ export async function RestoreOrigin(origin_dir: string, dir_with_backup: string,
         }
       }
     }
-
   })
 }
 
@@ -81,9 +80,8 @@ export function Decrypt(key: string, input_file: string, output_file: string): P
   return new Promise((resolve, reject) => {
     var input = fs.createReadStream(input_file)
 
-    input.on('readable', () => {
+    input.once('readable', () => {
       const iv: Buffer = <any>input.read(IV_SIZE_BYTES)
-      input.removeAllListeners('readable')
       const cipher = crypto.createDecipheriv(CRYPTO_ALGO, StringKeyToBuffer(key), iv)
       var output = fs.createWriteStream(output_file)
       input.unpipe()

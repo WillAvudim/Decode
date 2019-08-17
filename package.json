@@ -1,16 +1,16 @@
 {
   "name": "decode",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "main": "unpack_cli.ts",
   "scripts": {
     "build": "echo IGNORED"
   },
   "dependencies": {
-    "fs-extra": "7.0.0"
+    "fs-extra": "8.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "*",
-    "typescript": "3.0.1",
-    "ts-node": "7.0.0"
+    "typescript": "3.5.3",
+    "ts-node": "8.3.0"
   }
 }

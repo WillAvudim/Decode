@@ -1,4 +1,6 @@
-// npm install; `npm bin`/ts-node unpack_cli.ts <path-to-key> <path-to-backup> <output-path>
+/*
+  $ npm install; `npm bin`/ts-node unpack_cli.ts <path-to-key> <path-to-backup> <output-path>
+*/
 import * as fse from 'fs-extra'  // https://www.npmjs.com/package/fs-extra
 import * as unpack from './unpack'
 
